@@ -5,11 +5,60 @@
  * and open the template in the editor.
  */
 
-class UserModel extends DB {
 
+class UserModel extends DB {
+    public $TableName = "users";
+    public $Schema = array(
+        'id'            => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "primary_key" => true,
+            'auto_increment' => true
+        ),
+        "username"      => array(
+            "dataType"=>"string", 
+            "dataSize"=>255, 
+            "not_null"=>true
+        ),
+        "password"      => array(
+            "dataType"=>"string", 
+            "dataSize"=>255, 
+            "not_null"=>true
+        ),
+        "parent_id"     => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "default" => 0
+        ),
+        "role"          => array(
+            "dataType"=>"string", 
+            "dataSize"=>200, 
+            "not_null"=>true
+        ),
+        "timestamp"     => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "default" => 0
+        ),
+        "mod_timestamp" => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "default" => 0
+        ),
+        "etms"          => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "default" => 0
+        )
+    );
     function __construct() {
     	//@session_start();
-        parent::__construct(_DNS_, _USER_, _PASS_);
+        parent::__construct($this);
     }
     public function checkUsername($username){
         $state = "SELECT * FROM `users` WHERE `username` = '".$username."'";

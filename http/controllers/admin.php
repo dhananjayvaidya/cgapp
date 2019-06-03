@@ -32,6 +32,12 @@ class admin extends Controller{
 			
 		}
     }
+    function create_course(){
+        
+        
+        $this->view->title  ="Create Course | "._COMPANY_NAME_;
+        $this->view->render("admin/course/add");
+    }
     function logout(){
         session_destroy();
         echo "<script>window.location='"._ADMIN_PATH_."';</script>";

@@ -6,10 +6,65 @@
  */
 
 class CourseModel extends DB {
-
+    public $TableName = "courses";
+    public $Schema = array(
+        'id'            => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "primary_key" => true,
+            'auto_increment' => true
+        ),
+        "course_name"      => array(
+            "dataType"=>"string", 
+            "dataSize"=>255, 
+            "not_null"=>true
+        ),
+        "course_desc"      => array(
+            "dataType"=>"string", 
+            "dataSize"=>255, 
+            "not_null"=>true
+        ),
+        "status"     => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "default" => 0
+        ),
+        "start_date"     => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "default" => 0
+        ),
+        "end_date" => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "default" => 0
+        ),
+        "timestamp" => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "default" => 0
+        ),
+        "mod_timestamp" => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "default" => 0
+        ),
+        "etms"          => array(
+            "dataType"=>"int", 
+            "dataSize"=>11, 
+            "not_null"=>true,
+            "default" => 0
+        )
+    );
     function __construct() {
     	//@session_start();
-        parent::__construct(_DNS_, _USER_, _PASS_);
+        parent::__construct($this);
     }
     public function add($data){
         $state = "INSERT INTO `courses`( 
@@ -29,6 +84,7 @@ class CourseModel extends DB {
                         '".time()."', 
                         '".time()."'
                     )";
+        //echo $state;
         $query = $this->prepare($state);
         return $query->execute();
     } 

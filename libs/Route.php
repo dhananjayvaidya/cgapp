@@ -136,6 +136,66 @@ class Route {
             $this->found = 0;
         }
     }
+    function crud($route,$controller_name){
+        @$url = "/".$_GET['url'] ;
+        if (strpos($route,"{}",0) >= 1){
+            $e = explode("/",$url);
+            $route = str_replace("{}","",$route);
+            $r = explode("/",$route);
+            $newpath = array_unique(array_merge($e,$r));
+            $newRoute = array();
+            foreach($newpath as $t){ $newRoute[] = $t; }
+            $newRoute =  implode("/",$newRoute);
+            //strip parameters
+            $g = explode("{}",$route);
+            $te =explode($g[0],$newRoute);
+            //replace / to @
+            $p = str_replace("/","@",$te[1]); 
+            $p = "@".$p;
+        }else{
+            $newRoute = $route;
+        }
+        $URLCore = explode("/",$url);
+        $CRUD_OPR = end($URLCore);
+        $end = count($URLCore)-1;
+        unset($URLCore[$end]);
+        $URLCore = implode("/",$URLCore); 
+        if ($URLCore == $newRoute){
+            $file = "http/controllers/".$controller_name.".php";
+            if (file_exists($file) == true){
+                require $file;
+            }else{
+                //load error class
+                $this->HTTPErrors->runTimeError("Controller Path : ".$file." Not found !");            
+            }
+            switch ($CRUD_OPR){
+                case "add":
+                    $c = new $controller_name();
+                    $c->add();
+                    die();
+                break;
+                case "update":
+                    $c = new $controller_name();
+                    $c->update();
+                die();
+                break;
+                case "delete":
+                    $c = new $controller_name();
+                    $c->delete();
+                    die();
+                break;
+                case "view":
+                    $c = new $controller_name();
+                    $c->view();
+                    die();
+                break;
+            }
+            echo "Yes We got it, & CRUD Operation is ".$CRUD_OPR;   
+        }else{
+            echo "<br>Invalid Call";
+        }
+        
+    }
     function error(){
         if ($this->found !== 1){
             $this->HTTPErrors->notFound();

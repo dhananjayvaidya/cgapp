@@ -7,7 +7,7 @@ define("_DEV_",false);
 */
 require "config/database.php";
 
-define("_PATH_","http://localhost/cgapp2/");	     //Global Path
+define("_PATH_",base_url());	     //Global Path
 define("_COMPANY_NAME_","CGApp ");		 //company name 
 //setting time zone
 date_default_timezone_set("Asia/Kolkata");		     //default time zone
