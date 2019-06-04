@@ -23,7 +23,10 @@ class course extends Controller{
         echo "remove function";
     }
     public function view(){
-        echo "View Function";
+        $CourseObj = new CourseModel();
+        $this->view->data = $CourseObj->getAll();
+        $this->view->title = "View Courses | "._COMPANY_NAME_;
+        $this->view->render("admin/course/view");
     }
 }
 ?>

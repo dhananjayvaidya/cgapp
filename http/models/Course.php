@@ -21,9 +21,7 @@ class CourseModel extends DB {
             "not_null"=>true
         ),
         "course_desc"      => array(
-            "dataType"=>"string", 
-            "dataSize"=>255, 
-            "not_null"=>true
+            "dataType"=>"text"
         ),
         "status"     => array(
             "dataType"=>"int", 
@@ -79,8 +77,8 @@ class CourseModel extends DB {
                         '".$data['course_name']."', 
                         '".$data['course_desc']."', 
                         '".$data['status']."', 
-                        '".$data['start_date']."', 
-                        '".$data['end_date']."',
+                        '".strtotime($data['start_date'])."', 
+                        '".strtotime($data['end_date'])."',
                         '".time()."', 
                         '".time()."'
                     )";

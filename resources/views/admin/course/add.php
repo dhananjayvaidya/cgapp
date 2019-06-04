@@ -18,13 +18,20 @@
                     <form action="" method="post">
                         <div class="form-group">
                             <label>Course Name</label>
-                            <input type="text" name="course_name" placeholder="Course name" class="form-control" />
+                            <input type="text" required name="course_name" placeholder="Course name" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label>Course Description</label>
-                            <textarea name="course_desc" placeholder="Course Description" class="form-control" ></textarea>
+                            <textarea required name="course_desc" placeholder="Course Description" class="form-control" ></textarea>
                         </div>
-
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input type="date" class="form-control" name="start_date"/>
+                        </div>
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type="date" class="form-control" name="end_date"/>
+                        </div>
                         <input type="submit" class="btn btn-primary" value=" Submit " />
                     </form>
                 </div>

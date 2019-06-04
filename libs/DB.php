@@ -45,12 +45,14 @@ class DB extends PDO{
         //create the table here
         $tableDef = "";
         foreach($schema as $key=>$s){
+            //print_r($s);
             $tableDef .=  "`".$key."` ".
-            ($s['dataType'] == 'string'?'varchar':$s['dataType'])."(".$s['dataSize'].") ". 
+            ($s['dataType'] == 'string'?'varchar':$s['dataType']).
+            ($s['dataSize']?"(".$s['dataSize'].") ":""). 
             ($s['not_null'] == true ? "NOT NULL ": "" ). 
             ($s['primary_key'] == true ? 'PRIMARY KEY ':"").
             ($s['auto_increment'] == true ? 'AUTO_INCREMENT ':"").
-            ($s['default'] ? "DEFAULT '".$s['default']."'" : "").",";
+            (isset($s['default'])  ? "DEFAULT '".$s['default']."'" : "").",";
         } 
         $tableDef = rtrim($tableDef,",");
         $state = "CREATE TABLE `".$tableName."` (
@@ -60,55 +62,6 @@ class DB extends PDO{
         $query = $this->prepare($state);
         return $query->execute();
     }
-    //old functions
-    public function insert($tb_name){
-        $this->tb_name = $tb_name;
-        $this->ins_flag = true;
-        return $this;
-    }
-    public function items($data){
-        if($this->ins_flag == true && $this->tb_name){
-            $cols = "";
-            $vals = "";
-            foreach($data as $key=>$value){
-                $cols .= "`".$key."`";
-                $cols .= ",";
-                $vals .="'".$value."'";
-                $vals .=",";
-            }
-            //remove last ,
-            rtrim($vals,",");
-            rtrim($cols,",");
-            $state = "INSERT INTO `".$this->tb_name."` (".$cols.") VALUES (".$vals.")";
-            $query = $this->prepare($state);
-            $query->execute();
-            return $this;
-            
-        }
-    }
-    public function lookUp(){
-        
-    }
-    public function merge(){
-        
-    }
-    
-    public function select(){
-        
-    }
-    public function update(){
-        
-    }
-    public function remove(){
-        
-    }
-    public function etms(){
-        
-    }
-    public function draft(){
-        
-    }
-    
     
 }
 

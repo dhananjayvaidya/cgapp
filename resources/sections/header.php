@@ -5,11 +5,12 @@
     <title><?php echo $this->title; ?></title>
     <meta name="description" content="<?php echo $this->meta->desc;?>">
     <meta name="keywords" content="<?php echo $this->meta->keywords;?>">
-    <meta name="author" content="Whatsapp Marketing">
+    <meta name="author" content="">
     <link rel="shortcut icon" href="<?php echo _PATH_; ?>resources/public/img/tm.ico" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Teko" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="<?php echo _PATH_;?>resources/public/css/bootstrap-datepicker.min.css" /> 
+    <link rel="stylesheet" type="text/css" href="<?php echo _PATH_;?>resources/public/css/main.css" />
     <script> var _PATH_ = "<?php echo _PATH_; ?>";</script>
 </head>
 
@@ -17,21 +18,33 @@
     <div class='ui-top-bar' style=''>
         <div class="container">
             <div class="row">
-               
-                <div class="col-md-6 pull-right text-right">
+                
+                
+                 
+            </div>
+        </div>
+    </div>
+    <div style='background:#fff;'>
+    <div class="container">
+        <div class="row" >
+            
+            <div class="col-md-6">
+                <div class='ui-logo'><a href="<?php echo _ADMIN_PATH_;?>"><img src='<?php echo _PATH_;?>resources/public/img/logo.jpg' /></a></div>
+            </div>
+            <div style="display:none;" class="col-md-3  offset-md-3 text-right">
                     <?php 
-                    if ($_SESSION['uid']){
+                    if ($_SESSION['admin_uid']){
                         //print_r($_SESSION);
                         ?>
                         
                         <div class="btn-group ">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?php echo $_SESSION['fullName']?> <span class="caret"></span>
+                        <?php echo $_SESSION['admin_username']?> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
                         <li><a href="<?php echo _PATH_;?>account/profile">Profile</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="<?php echo _PATH_;?>logout.html">Logout</a></li>
+                        <li><a href="<?php echo _PATH_;?>logout">Logout</a></li>
                         </ul>
                         </div>
                         <?php 
@@ -42,21 +55,10 @@
                     }
                     ?>
                 </div>
-                 
-            </div>
-        </div>
-    </div>
-    <div style='background:#fff;'>
-    <div class="container">
-        <div class="row" >
-            
-            <div class="col-md-12">
-                <div class='ui-logo'><a href="/"><img src='<?php echo _PATH_;?>resources/public/img/cwframework-logo.png' /></a></div>
-            </div>
         </div>
     </div>
     </div>
-    <div style='background:#6d7a8e;'>
+    <div style='background:#6d7a8e;display:none;'>
     <div class="container">
     <nav class="navbar navbar-default" style="margin-bottom:0px;">
       <div class="container">
